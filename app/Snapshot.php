@@ -44,21 +44,52 @@ class Snapshot
         ]);
     }
 
-    public static function put(array $data)
+    public static function initItem($url)
     {
         $db = AWS::createClient('DynamoDb');
 
         $id = md5(uniqid($prefix='', $more_entropy=true));
 
-        $data['id']         = ['S' => $id];
-        $data['created_at'] = ['S' => date('c')];
+        $creation_time = date('c');
+
+        $data = [
+            'id'          => ['S' => $id],
+            'item_status'      => ['S' => 'pending'],
+            'url'         => ['S' => $url],
+            'modified_at' => ['S' => $creation_time],
+            'created_at'  => ['S' => $creation_time],
+        ];
 
         $db->putItem([
             'TableName' => self::table_name,
             'Item'      => $data,
         ]);
 
-        echo($id);
+        return $id;
+    }
+
+    public static function fillItem($id, array $data)
+    {
+        $db = AWS::createClient('DynamoDb');
+
+        $data[':item_status'] = ['S' => 'ready'];
+        $data[':modified_at'] = ['S' => date('c')];
+
+        $result = $db->updateItem([
+            'TableName' => self::table_name,
+            'Key'       => [
+                'id' => ['S' => $id],
+            ],
+            'ExpressionAttributeValues' => $data,
+            'UpdateExpression' =>
+                'SET
+                    item_status = :item_status,
+                    modified_at = :modified_at
+                    ',
+            'ReturnValues' => 'ALL_NEW',
+        ]);
+
+        return $result;
     }
 
     public static function find($id)

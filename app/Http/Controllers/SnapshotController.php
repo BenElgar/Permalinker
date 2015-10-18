@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Snapshot;
+use App\Jobs\CreateSnapshot;
 
 class SnapshotController extends Controller
 {
@@ -38,7 +39,14 @@ class SnapshotController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->get('url');
+        $url = $request->get('url');
+        $id = Snapshot::initItem($url);
+
+        echo($id);
+
+        $this->dispatch(new CreateSnapshot($id));
+
+        return $id;
     }
 
     /**
