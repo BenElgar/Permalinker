@@ -42,9 +42,7 @@ class SnapshotController extends Controller
         $url = $request->get('url');
         $id = Snapshot::initItem($url);
 
-        echo($id);
-
-        $this->dispatch(new CreateSnapshot($id));
+        $this->dispatch(new CreateSnapshot($id, $url));
 
         return $id;
     }
@@ -55,9 +53,10 @@ class SnapshotController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $file_name='index.html')
     {
-        //
+        $path = Snapshot::find($id)['Item']['root_path']['S'];
+        readfile($path . $file_name);
     }
 
     /**

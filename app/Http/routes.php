@@ -19,3 +19,13 @@ Route::post('/store', [
     'as' => 'snapshot.store',
     'uses' => 'SnapshotController@store',
 ]);
+
+Route::get('/{snapshot_id}', function($snapshot_id) {
+    return redirect()->route('snapshot.show', [$snapshot_id, 'index.html']);
+});
+
+
+Route::get('/{snapshot_id}/{file_name}', [
+    'as' => 'snapshot.show',
+    'uses' => 'SnapshotController@show',
+]);

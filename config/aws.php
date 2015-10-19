@@ -17,14 +17,18 @@ return [
     |
     */
 
-    'region' => env('AWS_REGION', 'us-east-1'),
+    'region' => env('AWS_REGION', 'eu-west-1'),
     'version' => 'latest',
     'ua_append' => [
         'L5MOD/' . AwsServiceProvider::VERSION,
     ],
     'endpoint' => env('AWS_ENDPOINT'),
     'credentials' => [
-        'key'    => 'YOUR_AWS_ACCESS_KEY_ID',
-        'secret' => 'YOUR_AWS_SECRET_ACCESS_KEY',
+        'key'    => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
     ],
+    'S3' => [
+        'endpoint' => null,
+    ]
+
 ];

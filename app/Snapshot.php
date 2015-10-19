@@ -68,12 +68,13 @@ class Snapshot
         return $id;
     }
 
-    public static function fillItem($id, array $data)
+    public static function fillItem($id, $root_path)
     {
         $db = AWS::createClient('DynamoDb');
 
         $data[':item_status'] = ['S' => 'ready'];
         $data[':modified_at'] = ['S' => date('c')];
+        $data[':root_path']   = ['S' => $root_path];
 
         $result = $db->updateItem([
             'TableName' => self::table_name,
@@ -84,7 +85,8 @@ class Snapshot
             'UpdateExpression' =>
                 'SET
                     item_status = :item_status,
-                    modified_at = :modified_at
+                    modified_at = :modified_at,
+                    root_path        = :root_path
                     ',
             'ReturnValues' => 'ALL_NEW',
         ]);
