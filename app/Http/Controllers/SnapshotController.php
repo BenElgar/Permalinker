@@ -55,7 +55,7 @@ class SnapshotController extends Controller
      */
     public function show($id)
     {
-        $snapshot = Snapshot::find($id)['Item'];
+        $snapshot = Snapshot::find($id);
         return view('snapshot.show', compact('id', 'snapshot'));
     }
 

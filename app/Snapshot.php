@@ -94,17 +94,24 @@ class Snapshot
         return $result;
     }
 
+    private static function removeTypes($value)
+    {
+         return array_values($value)[0];
+    }
+
     public static function find($id)
     {
         $db = AWS::createClient('DynamoDb');
 
-        return $db->getItem([
+        $item = $db->getItem([
             'ConsistentRead' => true,
             'TableName' => self::table_name,
             'Key' => [
                 'id' => ['S' => $id]
             ],
-        ]);
+        ])['Item'];
+
+        return array_map("self::removeTypes", $item);
     }
 
 }
