@@ -11,6 +11,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Snapshot;
 use Log;
 use AWS;
+use File;
+use DOMDocument;
+use DOMXPath;
 
 class CreateSnapshot extends Job implements SelfHandling, ShouldQueue
 {
@@ -37,32 +40,44 @@ class CreateSnapshot extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        //$data = [];
-
-        $path = storage_path('app/tmp/') . $this->id . '/';
-        $safe_url = escapeshellcmd($this->url);
+        $path       = storage_path('app/tmp/') . $this->id . '/';
+        $safe_url   = escapeshellcmd($this->url);
         $user_agent = env('SCRAPER_USER_AGENT');
 
         $return_status = -1;
-        $output = [];
+        $output        = [];
 
+        // Download website
         $result = exec(
-            'httrack '. $safe_url .' -w -O "'. $path .'"  -z --depth=1 --user-agent="'. $user_agent .'" --near --urlhack -s0 -N1099 --preserve',
+            'httrack '. $safe_url .' -w -O "'. $path .'"  -z --depth=1 --user-agent="'. $user_agent .'" --near --urlhack -s0 -N1099',
             $output,
             $return_status
         );
 
+        // Get page title
+        $page_title = self::getPageTitle($this->url);
+
         // Upload to S3
         $s3 = AWS::createClient('s3');
-        $s3->uploadDirectory($path, 'permalinker-snapshots', $this->id.'/', [
-             'concurrency' => 20,
-        ]);
+        $s3->uploadDirectory($path, 'permalinker-snapshots', $this->id.'/');
 
-        Snapshot::fillItem($this->id, $path);
+        // Update database
+        Snapshot::fillItem($this->id, $page_title);
 
+        // Delete temporary directory
+        File::deleteDirectory($path);
+
+        // Debug code
         echo(route('snapshot.show', $this->id));
         echo("\n");
-        echo($return_status);
-        echo("\n");
+    }
+
+    private static function getPageTitle($url)
+    {
+        $doc = new DOMDocument();
+        @$doc->loadHTMLFile($url);
+        $xpath = new DOMXPath($doc);
+        $title_object = $xpath->query('//title')->item(0);
+        return $title_object ? $title_object->nodeValue : 'Unknown';
     }
 }

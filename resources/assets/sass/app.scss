@@ -1,2 +1,23 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+$header-height: 80px;
+
+.snapshot-header
+{
+    min-height: $header-height;
+    top: 0;
+    border-bottom: 1px solid black;
+
+    .row {
+        margin-top: 15px;
+    }
+
+    h2 {
+        margin: 0;
+    }
+
+}
+
+.snapshot-iframe
+{
+    position: fixed;
+}
 

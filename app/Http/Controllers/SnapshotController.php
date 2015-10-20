@@ -53,10 +53,10 @@ class SnapshotController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $file_name='index.html')
+    public function show($id)
     {
-        $path = Snapshot::find($id)['Item']['root_path']['S'];
-        readfile($path . $file_name);
+        $snapshot = Snapshot::find($id)['Item'];
+        return view('snapshot.show', compact('id', 'snapshot'));
     }
 
     /**

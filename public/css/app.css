@@ -1,2 +1,13 @@
+.snapshot-header {
+  min-height: 80px;
+  top: 0;
+  border-bottom: 1px solid black; }
+  .snapshot-header .row {
+    margin-top: 15px; }
+  .snapshot-header h2 {
+    margin: 0; }
+
+.snapshot-iframe {
+  position: fixed; }
 
 /*# sourceMappingURL=app.css.map */
