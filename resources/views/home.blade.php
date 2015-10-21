@@ -38,7 +38,7 @@
             };
 
             $.post("{{ route('snapshot.store') }}", data, function(result) {
-                alert(result);
+                window.location = result;
             });
         });
     </script>

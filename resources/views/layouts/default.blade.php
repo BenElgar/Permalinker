@@ -11,6 +11,9 @@
             <!-- Bootstrap -->
             <link href="vendor/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
             <link href="css/app.css" rel="stylesheet">
+
+            <!-- FontAwesome -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         @show
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

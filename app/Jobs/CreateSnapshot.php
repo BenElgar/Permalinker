@@ -67,9 +67,6 @@ class CreateSnapshot extends Job implements SelfHandling, ShouldQueue
         // Delete temporary directory
         File::deleteDirectory($path);
 
-        // Debug code
-        echo(route('snapshot.show', $this->id));
-        echo("\n");
     }
 
     private static function getPageTitle($url)

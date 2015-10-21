@@ -44,7 +44,7 @@ class SnapshotController extends Controller
 
         $this->dispatch(new CreateSnapshot($id, $url));
 
-        return $id;
+        return route('snapshot.show', $id);
     }
 
     /**
@@ -56,7 +56,13 @@ class SnapshotController extends Controller
     public function show($id)
     {
         $snapshot = Snapshot::find($id);
-        return view('snapshot.show', compact('id', 'snapshot'));
+
+        if ($snapshot['item_status'] == 'ready')
+        {
+            return view('snapshot.show', compact('snapshot'));
+        }
+
+        return view('snapshot.pending', compact('snapshot'));
     }
 
     /**
