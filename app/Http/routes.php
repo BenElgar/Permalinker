@@ -20,6 +20,11 @@ Route::post('/store', [
     'uses' => 'SnapshotController@store',
 ]);
 
+Route::get('/status/{snapshot_id}', [
+    'as' => 'snapshot.status',
+    'uses' => 'SnapshotController@status',
+]);
+
 Route::get('/{snapshot_id}', [
     'as' => 'snapshot.show',
     'uses' => 'SnapshotController@show',

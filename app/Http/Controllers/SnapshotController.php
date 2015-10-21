@@ -22,13 +22,13 @@ class SnapshotController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Checks if a snapshot is ready
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function status($id)
     {
-        //
+        return Snapshot::find($id)['item_status'];
     }
 
     /**
