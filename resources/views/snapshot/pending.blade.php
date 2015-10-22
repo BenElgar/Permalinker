@@ -1,5 +1,9 @@
 @extends('layouts.default')
 
+@section('title')
+    Pending
+@stop
+
 @section('main')
     <div class="container">
         <div class="row">
