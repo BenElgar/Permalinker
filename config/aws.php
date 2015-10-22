@@ -22,13 +22,12 @@ return [
     'ua_append' => [
         'L5MOD/' . AwsServiceProvider::VERSION,
     ],
-    'endpoint' => env('AWS_ENDPOINT'),
     'credentials' => [
         'key'    => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
     ],
-    'S3' => [
-        'endpoint' => null,
-    ]
+
+    // This should only be set when simulating an AWS service locally
+    'endpoint' => env('AWS_ENDPOINT'),
 
 ];
