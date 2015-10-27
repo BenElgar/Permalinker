@@ -49,7 +49,7 @@ class CreateSnapshot extends Job implements SelfHandling, ShouldQueue
 
         // Download website
         $result = exec(
-            'httrack '. $safe_url .' -w -O "'. $path .'"  -z --depth=1 --user-agent="'. $user_agent .'" --near --urlhack -s0 -N1099',
+            "httrack '". $safe_url ."' -w -O '". $path ."'  -z --depth=1 --user-agent='". $user_agent ."' --near --urlhack -s0 -N1099",
             $output,
             $return_status
         );
