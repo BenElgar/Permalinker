@@ -4,10 +4,10 @@ html {
 body {
   background: transparent;
   font-family: 'Merriweather', serif;
-  font-weight: 400; }
+  font-weight: 400;
+  font-size: 2.5em; }
 
 .intro-text {
-  font-size: 2em;
   font-weight: 100; }
 
 h1, h2 {
@@ -17,8 +17,8 @@ h1, h2 {
 
 h1 {
   text-align: center;
-  font-size: 6em;
-  margin-bottom: 20px; }
+  font-size: 3em;
+  margin-bottom: 30px; }
 
 .form-control.url-input {
   height: 45px;
