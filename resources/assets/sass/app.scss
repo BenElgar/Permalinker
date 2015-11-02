@@ -1,3 +1,41 @@
+html
+{
+    background: #ddd;
+}
+
+body
+{
+    background: transparent;
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+}
+
+.intro-text
+{
+    font-size: 2em;
+    font-weight: 100;
+}
+
+h1,h2
+{
+    /*text-transform: uppercase;*/
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+}
+
+h1
+{
+    text-align: center;
+    font-size: 6em;
+    margin-bottom: 20px;
+}
+
+.form-control.url-input
+{
+    height: 45px;
+    font-size: 20px;
+}
+
 $header-height: 80px;
 
 .snapshot-header
@@ -12,6 +50,10 @@ $header-height: 80px;
 
     h2 {
         margin: 0;
+        font-size: 3em;
+        a {
+             color: black;
+        }
     }
 
 }
@@ -19,5 +61,7 @@ $header-height: 80px;
 .snapshot-iframe
 {
     position: fixed;
+    background: white;
 }
+
 

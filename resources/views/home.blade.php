@@ -13,12 +13,15 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
+                <p class="intro-text">
+                    Enter a URL below to create a permanent link to the page
+                </p>
                 <form id="url-form">
                     <div class="form-group">
-                        <label for="url">URL</label>
-                        <input class="form-control" type="url" name="url">
+                        <label for="url" class="sr-only">URL</label>
+                        <input class="form-control url-input" type="url" name="url">
                     </div>
-                    <button class="btn btn-primary btn-lg">Submit</button>
+                    <button class="btn btn-primary btn-lg pull-right">Submit</button>
                 </form>
             </div>
         </div>

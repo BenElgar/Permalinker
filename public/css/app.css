@@ -1,3 +1,29 @@
+html {
+  background: #ddd; }
+
+body {
+  background: transparent;
+  font-family: 'Merriweather', serif;
+  font-weight: 400; }
+
+.intro-text {
+  font-size: 2em;
+  font-weight: 100; }
+
+h1, h2 {
+  /*text-transform: uppercase;*/
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200; }
+
+h1 {
+  text-align: center;
+  font-size: 6em;
+  margin-bottom: 20px; }
+
+.form-control.url-input {
+  height: 45px;
+  font-size: 20px; }
+
 .snapshot-header {
   min-height: 80px;
   top: 0;
@@ -5,9 +31,13 @@
   .snapshot-header .row {
     margin-top: 15px; }
   .snapshot-header h2 {
-    margin: 0; }
+    margin: 0;
+    font-size: 3em; }
+    .snapshot-header h2 a {
+      color: black; }
 
 .snapshot-iframe {
-  position: fixed; }
+  position: fixed;
+  background: white; }
 
 /*# sourceMappingURL=app.css.map */

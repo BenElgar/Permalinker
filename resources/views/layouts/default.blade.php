@@ -14,6 +14,10 @@
 
             <!-- FontAwesome -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+            <!-- Fonts -->
+            <link href='https://fonts.googleapis.com/css?family=Raleway:400,300,200,100' rel='stylesheet' type='text/css'>
+            <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'>
         @show
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
